@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PacienteController;
+use App\Http\Controllers\ProdutosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +21,7 @@ Route::get('/', function () {
 */
 
 Route::get('/imc/{nome}/{peso}/{altura}/{sexo}',[PacienteController::class,'CalcularIMC']);
+
+Route::get('/',[ProdutosController::class,'index']);
+
 
