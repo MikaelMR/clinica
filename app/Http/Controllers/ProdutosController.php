@@ -71,7 +71,7 @@ class ProdutosController extends Controller
             return $produto['novo'] === true;
         });
 
-        return view('main', ['produtos' => $produtos]);
+        return view('novos', ['produtos' => $produtos]);
     }
 
     public function indexUsados()
@@ -80,7 +80,7 @@ class ProdutosController extends Controller
             return $produto['novo'] === false;
         });
 
-        return view('main', ['produtos' => $produtos]);
+        return view('usados', ['produtos' => $produtos]);
     }
 
     /**
