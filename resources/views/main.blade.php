@@ -9,6 +9,8 @@
 </head>
 <body>
     <div class="container">
+        <div>
+            <h1 class="display-5">Produtos novos</h1>
         <div class="row">
             <div class="col-md-12">
                 <table class="table">
@@ -17,18 +19,25 @@
                         <th>Categoria</th>
                         <th>Preço</th>
                     </tr>
+
                     @if (count ($produtos) > 0)
-
                         @foreach ($produtos as $produto)
-
-                        <tr>
-                            <td>{{ $produto['nome'] }}</td>
-                            <td>{{ $produto['categoria'] }}</td>
-                            <td>{{ $produto['preco'] }}</td>
-                        </tr>
-
+                            @if ($produto['novo'] === true)
+                                @if ($produto['promocao'] === true)
+                                    <tr class="table-success">
+                                        <td>{{ $produto['nome'] }}</td>
+                                        <td>{{ $produto['categoria'] }}</td>
+                                        <td>R$ {{ number_format($produto['preco'],2,',','.') }}</td>
+                                    </tr>
+                                @else
+                                    <tr>
+                                        <td>{{ $produto['nome'] }}</td>
+                                        <td>{{ $produto['categoria'] }}</td>
+                                        <td>R$ {{ number_format($produto['preco'],2,',','.') }}</td>
+                                    </tr>
+                                @endif
+                            @endif
                         @endforeach
-
                     @else
                         <tr>
                             <td colspan="4">
@@ -39,8 +48,51 @@
                         </tr>
                     @endif
                 </table>
-
             </div>
+        </div>
+        </div>
+
+        <div>
+            <h1 class="display-5">Produtos usados</h1>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <tr>
+                        <th>Nome</th>
+                        <th>Categoria</th>
+                        <th>Preço</th>
+                    </tr>
+
+                    @if (count ($produtos) > 0)
+                        @foreach ($produtos as $produto)
+                            @if ($produto['novo'] === false)
+                                @if ($produto['promocao'] === true)
+                                    <tr class="table-success">
+                                        <td>{{ $produto['nome'] }}</td>
+                                        <td>{{ $produto['categoria'] }}</td>
+                                        <td>R$ {{ number_format($produto['preco'],2,',','.') }}</td>
+                                    </tr>
+                                @else
+                                    <tr>
+                                        <td>{{ $produto['nome'] }}</td>
+                                        <td>{{ $produto['categoria'] }}</td>
+                                        <td>R$ {{ number_format($produto['preco'],2,',','.') }}</td>
+                                    </tr>
+                                @endif
+                            @endif
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="4">
+                                <div class="alert alert-warning">
+                                    <p>Não há veículos nessa categoria.</p>
+                                </div>
+                            </td>
+                        </tr>
+                    @endif
+                </table>
+            </div>
+        </div>
         </div>
     </div>
 </body>

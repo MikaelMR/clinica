@@ -24,4 +24,7 @@ Route::get('/imc/{nome}/{peso}/{altura}/{sexo}',[PacienteController::class,'Calc
 
 Route::get('/',[ProdutosController::class,'index']);
 
+Route::get('/novos',[ProdutosController::class,'indexNovos']);
+Route::get('/usados',[ProdutosController::class,'indexUsados']);
+
 

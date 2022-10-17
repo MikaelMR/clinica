@@ -65,6 +65,24 @@ class ProdutosController extends Controller
         return view('main', ['produtos' => $produtos]);
     }
 
+    public function indexNovos()
+    {
+        $produtos = array_filter($this->produtos, function($produto){
+            return $produto['novo'] === true;
+        });
+
+        return view('main', ['produtos' => $produtos]);
+    }
+
+    public function indexUsados()
+    {
+        $produtos = array_filter($this->produtos, function($produto){
+            return $produto['novo'] === false;
+        });
+
+        return view('main', ['produtos' => $produtos]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
